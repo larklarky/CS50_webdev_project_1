@@ -31,8 +31,34 @@ textarea {
     background-color: #f0f0f0;
     height: 100vh;
     padding: 20px;
+    padding-left: 1.7rem;
 }
 
 .sidebar h2 {
     margin-top: 5px;
+}
+
+.messages {
+    list-style-type: none;
+    background-color: #f2dede;
+    padding: 1rem;
+    color: #a94442;
+    width: 66%;
+}
+
+label {
+    display: flex;
+    margin-top: 1.2rem;
+    font-size: 1.2rem;
+}
+
+#id_text {
+    height: 57vh;
+    width: 66%;
+    margin-bottom: 1rem;
+}
+
+#id_title {
+    width: 66%;
+    padding: 5px;
 }

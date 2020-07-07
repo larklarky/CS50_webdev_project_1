@@ -19,7 +19,7 @@
                     <a href="{% url 'index' %}">Home</a>
                 </div>
                 <div>
-                    Create New Page
+                    <a href="{% url 'add_entry' %}">Create New Page</a>
                 </div>
                 <div>
                     Random Page
@@ -28,6 +28,13 @@
                 {% endblock %}
             </div>
             <div class="main col-lg-10 col-md-9">
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
                 {% block body %}
                 {% endblock %}
             </div>
