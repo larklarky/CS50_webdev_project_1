@@ -59,3 +59,22 @@ def add_entry(request):
         "form": add_entry_form,
     })
 
+
+def edit_entry(request, title):
+    entry = util.get_entry(title)
+    edit_entry_form = NewEntry({'title': title, 'text': entry})
+    if request.method == 'POST':
+        edit_entry_form = NewEntry(request.POST)
+        if edit_entry_form.is_valid():
+            new_title = edit_entry_form.cleaned_data['title']
+            text = edit_entry_form.cleaned_data['text']
+            if title == new_title:
+                util.save_entry(title, text)
+                return HttpResponseRedirect(reverse('entry', args=[title]))
+            else:
+                messages.error(request, "The title can't be changed")
+    return render(request, "encyclopedia/edit.html", {
+        'form': edit_entry_form,
+        'title': title,
+    })
+
