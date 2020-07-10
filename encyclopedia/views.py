@@ -33,7 +33,8 @@ def index(request):
         elif q in entry.lower():
             search_result.append(entry)
     return render(request, "encyclopedia/index.html", {
-        "entries": search_result
+        "entries": search_result,
+        'search': q,
     })
 
 def entry(request, title):
