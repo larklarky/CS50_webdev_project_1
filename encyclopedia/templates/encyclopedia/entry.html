@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-{{entry}}
+{{entry|safe}}
 <div>
     <button><a href="{% url 'edit_entry' title %}">Edit</a></button>
 </div>

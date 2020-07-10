@@ -1,8 +1,12 @@
+import markdown2
+import random
 from django.shortcuts import render
 from django.urls import reverse
 from django import forms
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseNotFound, Http404, HttpResponseRedirect
+
+
 
 from . import util
 
@@ -37,9 +41,10 @@ def entry(request, title):
     if entry is None:
         raise Http404('Page not found')
     else:
+        markdown_entry = markdown2.markdown(entry)
         return render(request, 'encyclopedia/entry.html', {
             'title': title,
-            'entry': entry
+            'entry': markdown_entry
     })
 
 
@@ -77,4 +82,11 @@ def edit_entry(request, title):
         'form': edit_entry_form,
         'title': title,
     })
+
+
+
+def random_entry(request):
+    entries_list = util.list_entries()
+    random_title = random.choice(entries_list)
+    return HttpResponseRedirect(reverse('entry', args=[random_title]))
 
